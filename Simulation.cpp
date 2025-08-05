@@ -27,6 +27,8 @@ Simulation::Simulation():
     float simy=0.02*winy;
     float simwidth=winx*0.7;
     float simheight=winy*0.95;
+
+    pxMeter=simy/scaleMeters;   //calc scale factor for converting meters to pixels
    
 
 
@@ -60,6 +62,8 @@ void Simulation::update()
 
 
 
+
+
 }
 //================================================
 void Simulation::draw()
@@ -78,4 +82,12 @@ void Simulation::draw()
     forceText.draw();
 
 
+}
+//================================================
+void Simulation::doPhysics()
+{
+
+
+
+    return;
 }
