@@ -69,7 +69,7 @@ void Simulation::draw()
     DrawRectangleLinesEx(simarea,5,WHITE);
     //side panel rectangle
     DrawRectangle(winx*0.73,simarea.y,winx*0.3,simarea.height,Color{24,52,20,255});
-    DrawTextEx(chalk,"Sping Physics Simulation",{winx*.735,winy*.05},90*(winx/2500),0,Color{230,230,115,255});
+    DrawTextEx(chalk,"Sping Physics Simulation",{winx*.735,winy*.05},90,0,Color{230,230,115,255});
     DrawTextEx(chalk,"Danger Simulation Area\n   Remain Clear...",{winx*.23,winy*.83},80,0,WHITE);
 
     resetButton.draw();
