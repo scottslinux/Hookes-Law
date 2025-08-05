@@ -13,7 +13,7 @@ bool TextBox::resourceguard3=false;
 //---------------------------------------------------------
 TextBox::TextBox(int fontsz, int digits, Vector2 loc,std::string labeltxt): fontsize{fontsz},locationxy{loc},maxdigits{digits}
 {
-    resourcecounter3++; //count for each attempt to load
+    resourcecounter3++; //count for each  attempt to load
     if (!resourceguard3)
     {
         

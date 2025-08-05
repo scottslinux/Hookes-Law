@@ -12,7 +12,7 @@ RAYLIBINCLUDES = /usr/local/include
 RAYLIB_LIBRARY= /usr/local/lib 
 
 # Compiler flags, include flags, linker flags, and library locations
-CXXFLAGS = -Wall -Wextra -g -std=c++14 -I$(RAYLIBINCLUDES)
+CXXFLAGS = -Wall -Wextra -g -std=c++14 -I$(RAYLIBINCLUDES) 
 LDFLAGS = -L$(RAYLIB_LIBRARY) -lraylib -lm -ldl -lpthread -lrt -lX11 
 
 # Project name and target executable
@@ -25,7 +25,7 @@ OBJS = $(SRCS:.cpp=.o)
 
 #-----------------------------
 # Build the project
-all: $(TARGET)
+all: clean $(TARGET)
 
 # Link objects to produce executable TARGET
 $(TARGET): $(OBJS)
@@ -34,6 +34,8 @@ $(TARGET): $(OBJS)
 # Compile each .cpp file into its corresponding .o file without linking
 %.o: %.cpp
 	$(CXX) $(CXXFLAGS) -c $< -o $@
+
+
 
 # Clean up object files and the executable
 clean:
