@@ -8,7 +8,7 @@
 #include "Slider.h"
 #include "TextBox.h"
 #include "textButton.h"
-#include "Scoreboard.h"
+#include "Simulation.h"
 
 using namespace std;
 
@@ -17,15 +17,18 @@ int main()
 {
     const int winwidth=2500;
     const int winheight=1800;
-    
-    
+
+    InitWindow(GetMonitorWidth(0),GetMonitorHeight(0),"test");
+    float bestwidth=GetMonitorWidth(0)*0.8;
+    float bestheight=GetMonitorHeight(0)*0.8;
+    CloseWindow();
     
 
 
-    InitWindow(winwidth,winheight,"Spring Demo");
+    InitWindow(bestwidth,bestheight,"Spring Demo");
         SetTargetFPS(60);
         InitAudioDevice();
-    Scoreboard gameWindow;
+    Simulation gameWindow;
 
     while(!WindowShouldClose())
     {
