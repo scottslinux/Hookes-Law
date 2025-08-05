@@ -71,7 +71,7 @@ void TextBox::draw()
     Vector2 labelsize=MeasureTextEx(boxfont,label.c_str(),fontsize,0);
 
     DrawTextEx(boxfont,label.c_str(),{locationxy.x,locationxy.y+5},fontsize,0,WHITE);
-    DrawRectangle(locationxy.x+labelsize.x,locationxy.y,size.x,size.y,background);
+    DrawRectangle(locationxy.x+labelsize.x,locationxy.y,size.x,size.y,GRAY);
 
     if (boxstring.length()>maxdigits)
     {

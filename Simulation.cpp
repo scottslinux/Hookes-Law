@@ -64,8 +64,12 @@ void Simulation::update()
 //================================================
 void Simulation::draw()
 {
+    //⁡⁣⁢⁣​‌‍‌𝗗𝗿𝗮𝘄 𝘁𝗵𝗲 𝗲𝗹𝗲𝗺𝗲𝗻𝘁𝘀 𝗼𝗳 𝘁𝗵𝗲 𝘀𝗰𝗿𝗲𝗲𝗻 𝗮𝗿𝗲𝗮 𝗮𝗻𝗱 𝗰𝗼𝗻𝘁𝗿𝗼𝗹𝘀​⁡
+
     DrawRectangleLinesEx(simarea,5,WHITE);
-    DrawTextEx(chalk,"A NON-STATIC FONT!!!  2,679.34",{500,500},80,0,WHITE);
+    //side panel rectangle
+    DrawRectangle(winx*0.73,simarea.y,winx*0.3,simarea.height,GRAY);
+    DrawTextEx(chalk,"The Chalkboard where the \n Simulation will occurr...",{500,500},80,0,WHITE);
 
     resetButton.draw();
     massSlider.draw();
