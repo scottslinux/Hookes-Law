@@ -24,6 +24,7 @@ Color background{0,0,0,255};
 Color fntcolor{0,255,0,255};
 int fontsize=50;
 int maxdigits=0;
+std::string label;
 
 
 
@@ -33,7 +34,7 @@ int maxdigits=0;
 public:
 
 
-TextBox(int fontsz, int digits, Vector2 loc);
+TextBox(int fontsz, int digits, Vector2 loc, std::string textLabel);
 ~TextBox();
 
 void update();

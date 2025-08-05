@@ -11,7 +11,7 @@ int TextBox::resourcecounter3=0;
 bool TextBox::resourceguard3=false;
 
 //---------------------------------------------------------
-TextBox::TextBox(int fontsz, int digits, Vector2 loc): fontsize{fontsz},locationxy{loc},maxdigits{digits}
+TextBox::TextBox(int fontsz, int digits, Vector2 loc,std::string labeltxt): fontsize{fontsz},locationxy{loc},maxdigits{digits}
 {
     resourcecounter3++; //count for each attempt to load
     if (!resourceguard3)
@@ -29,6 +29,7 @@ TextBox::TextBox(int fontsz, int digits, Vector2 loc): fontsize{fontsz},location
     boxstring="X"; //get the size for one large character and then mult for full size
     Vector2 messagesize=MeasureTextEx(boxfont,boxstring.c_str(),fontsize,0);
     messagesize.x*=digits;  //size * numberofchars 
+    label=labeltxt;
 
 
 
@@ -67,10 +68,10 @@ void TextBox::update()
 void TextBox::draw()
 {
     
+    Vector2 labelsize=MeasureTextEx(boxfont,label.c_str(),fontsize,0);
 
-
-
-    DrawRectangle(locationxy.x,locationxy.y,size.x,size.y,background);
+    DrawTextEx(boxfont,label.c_str(),{locationxy.x,locationxy.y+5},fontsize,0,WHITE);
+    DrawRectangle(locationxy.x+labelsize.x,locationxy.y,size.x,size.y,background);
 
     if (boxstring.length()>maxdigits)
     {
@@ -78,11 +79,11 @@ void TextBox::draw()
         for (int i=0;i<=maxdigits;i++)
             buffer[i]={'*'};
 
-        DrawTextEx(boxfont,buffer,{locationxy.x+5,locationxy.y+5},fontsize,0,fntcolor);
+        DrawTextEx(boxfont,buffer,{locationxy.x+5+labelsize.x,locationxy.y+5},fontsize,0,fntcolor);
         return;
     }
 
-    DrawTextEx(boxfont,boxstring.c_str(),{locationxy.x+5,locationxy.y+5},fontsize,0,fntcolor);
+    DrawTextEx(boxfont,boxstring.c_str(),{locationxy.x+5+labelsize.x,locationxy.y+5},fontsize,0,fntcolor);
 
     return;
 }

@@ -17,7 +17,7 @@ Scoreboard::Scoreboard():
     resetButton({(float)0.75*GetScreenWidth(),(float)0.1*GetScreenHeight()},0.15,"BEGIN SIM"),
     massSlider({(float)0.73*GetScreenWidth(),(float)0.35*GetScreenHeight()},0.4,0,0,100,"GRAVITY"),
     gravitySlider({(float)0.73*GetScreenWidth(),(float)0.45*GetScreenHeight()},0.4,0,0,100,"MASS"),
-    forceText(60,10,{(float)0.73*GetScreenWidth(),(float)0.60*GetScreenHeight()})
+    forceText(60,10,{(float)0.73*GetScreenWidth(),(float)0.60*GetScreenHeight()},"Acceleration: ")
 
 {
     winx=GetScreenWidth();
