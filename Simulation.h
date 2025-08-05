@@ -10,6 +10,7 @@
 #include "Slider.h"
 #include "TextBox.h"
 #include "textButton.h"
+#include "Spring.h"
 
 class Simulation{
 
@@ -29,7 +30,7 @@ class Simulation{
         float pxMeter=0;  //scale factor to convert meters to pixels
         float scaleMeters=50; //height of simarea in meters
 
-
+        Spring spring;
 
 
     public:
@@ -42,6 +43,7 @@ class Simulation{
     void update();
     void draw();
     void doPhysics();
+    
 
 
 

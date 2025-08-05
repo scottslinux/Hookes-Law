@@ -8,6 +8,7 @@
 #include "Slider.h"
 #include "TextBox.h"
 #include "textButton.h"
+#include "Spring.h"
 
 #include "Simulation.h"
 
@@ -37,11 +38,11 @@ Simulation::Simulation():
 
     
     
-
-
-    
     chalk=LoadFontEx("./resources/Crayon.ttf",50,0,0);
     std::cout << "Font texture ID: " << chalk.texture.id << std::endl;
+
+    
+    spring.initialize(simarea,{40,50},scaleMeters); //the 40,50 are meters
     
 }
 //================================================
@@ -59,6 +60,10 @@ void Simulation::update()
     forceText.update();
 
     forceText.print(mass*acc);
+
+    spring.updatephysics();
+
+    
 
 
 
@@ -80,6 +85,8 @@ void Simulation::draw()
     massSlider.draw();
     gravitySlider.draw();
     forceText.draw();
+
+    spring.draw();
 
 
 }
