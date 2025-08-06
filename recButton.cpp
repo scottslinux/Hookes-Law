@@ -26,7 +26,7 @@ recButton::recButton(int locx,int locy, float scale) : Button({500,500},0.5,"lab
 
     if(!resourceguard2) //only load once
     {
-        cout<<"loading the rec buttons....\n";
+       // cout<<"loading the rec buttons....\n";
         recButton_up=LoadTexture("./resources/RectangleButton_up.png");
             
         recButton_down=LoadTexture("./resources/RectangleButton_down.png");

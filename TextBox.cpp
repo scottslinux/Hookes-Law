@@ -20,8 +20,8 @@ TextBox::TextBox(int fontsz, int digits, Vector2 loc,std::string labeltxt): font
         boxfont=LoadFontEx("./resources/Inter.ttf",50,0,0);
         resourceguard3=true;
         
-        if (boxfont.texture.id !=0)
-            cout<<" Font loaded successfully for textbox...\n";
+      //  if (boxfont.texture.id !=0)
+          //  cout<<" Font loaded successfully for textbox...\n";
 
         
     }
@@ -107,7 +107,7 @@ void TextBox::print(int content)
 void TextBox::print(float content)
 {
     
-    cout<<"content="<<content<<endl;
+   // cout<<"content="<<content<<endl;
 
     char buffer[20];    //display string of float with 2 decimal points
     snprintf(buffer,sizeof(buffer),"%.2f",content);
@@ -115,8 +115,8 @@ void TextBox::print(float content)
     boxstring=buffer;
 
     insertcomma(boxstring);
-    cout<<"going to insert comma...\n";
-    cout<<boxstring<<endl;
+  //  cout<<"going to insert comma...\n";
+   // cout<<boxstring<<endl;
 
     return;
 }
@@ -124,7 +124,7 @@ void TextBox::print(float content)
 void TextBox::print(double content)
 {
     
-    cout<<"content="<<content<<endl;
+   // cout<<"content="<<content<<endl;
 
     char buffer[20];    //display string of float with 2 decimal points
     snprintf(buffer,sizeof(buffer),"%.2f",content);
@@ -132,8 +132,8 @@ void TextBox::print(double content)
     boxstring=buffer;
 
     insertcomma(boxstring);
-    cout<<"going to insert comma...\n";
-    cout<<boxstring<<endl;
+  //  cout<<"going to insert comma...\n";
+  //  cout<<boxstring<<endl;
 
     return;
 }
@@ -147,12 +147,12 @@ void TextBox::insertcomma(string& numstrng)
 
     
 
-    cout<<"numstrng= "<<numstrng<<endl;
+  //  cout<<"numstrng= "<<numstrng<<endl;
     if(numstrng[0]=='-')             // trim off the negative and set the flag for putting it back
     {
         numstrng=numstrng.substr(1);
         negflag=true;
-        cout<<"new numstrng= "<<numstrng<<endl;
+      //  cout<<"new numstrng= "<<numstrng<<endl;
     }
 
     for(char i:numstrng)
@@ -166,7 +166,7 @@ void TextBox::insertcomma(string& numstrng)
     string rightside=numstrng.substr(leftside.length(),numstrng.length());
 
 
-    cout<<"leftside: "<<leftside<<" rightside: "<<rightside<<endl;
+  // cout<<"leftside: "<<leftside<<" rightside: "<<rightside<<endl;
 
     string tempstr="";
     string temp2="";
@@ -193,7 +193,7 @@ void TextBox::insertcomma(string& numstrng)
     }
 
 
-    cout<<"left string: "<<leftside<<" right string: "<<rightside<<" temp: "<<tempstr<<endl;
+  //  cout<<"left string: "<<leftside<<" right string: "<<rightside<<" temp: "<<tempstr<<endl;
 
     for (int i=tempstr.length()-1;i>=0;i--)
     {
@@ -208,7 +208,7 @@ void TextBox::insertcomma(string& numstrng)
         else
             boxstring=numstrng;
 
-    cout<<"Boxstring..."<<boxstring<<endl;
+ //   cout<<"Boxstring..."<<boxstring<<endl;
 
     return;
 

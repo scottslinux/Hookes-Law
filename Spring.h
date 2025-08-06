@@ -20,7 +20,7 @@ private:
 
     //variables for anvil
     float mass=0;
-    Vector2 pos{};
+    Vector2 Masspos{};
     const float G=-9.8;
     float vel=0;
     float dtime=0;

@@ -22,7 +22,7 @@ Button::Button(Vector2 loc, float scale, std::string labeltext)
 {
     if (!resourceguard) //only once
     {
-        cout<<"Loading the resources.....\n";
+        //cout<<"Loading the resources.....\n";
 
         button_off=LoadTexture("./resources/button_up.png");
         button_on=LoadTexture("./resources/button_pressed.png");
@@ -39,8 +39,8 @@ Button::Button(Vector2 loc, float scale, std::string labeltext)
 
 
 
-    std::cout<<"in the constructor...\n";
-    std::cout<<"location: "<<location.x<<","<<location.y<<std::endl;
+    //std::cout<<"in the constructor...\n";
+    //std::cout<<"location: "<<location.x<<","<<location.y<<std::endl;
 
     return;
 }
@@ -51,7 +51,7 @@ Button::~Button()
 
     if(resourcecounter==0)
     {
-        cout<<"unloading the resources....\n";
+        //cout<<"unloading the resources....\n";
         unloadResources();
         resourceguard=false;
     }

@@ -50,8 +50,8 @@ textButton::textButton(std::string buttonlabel,Vector2 loc, int fntsize)
 
 
 
-    std::cout<<"in the constructor...\n";
-    std::cout<<"location: "<<location.x<<","<<location.y<<std::endl;
+  //  std::cout<<"in the constructor...\n";
+   // std::cout<<"location: "<<location.x<<","<<location.y<<std::endl;
 
     return;
 }

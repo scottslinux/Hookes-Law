@@ -46,7 +46,7 @@ Slider::Slider(Vector2 loc, float sliderscale,int detnts,int minim,int maxi, std
     slidelength=x2-x1;
     slidepoint=x1;
 
-    cout<<"slidept: "<<slidepoint<<" X1: "<<x1<<endl;
+   // cout<<"slidept: "<<slidepoint<<" X1: "<<x1<<endl;
 
     knobrect=Rectangle{location.x,location.y,knob.width*scale,
             knob.height*scale};
@@ -71,7 +71,7 @@ Slider::~Slider()
 void Slider::unloadResources()
 {
     resourcecounter--;
-    cout<<"Trying to unload in slider...resourcecounter: "<<resourcecounter<<endl;
+   // cout<<"Trying to unload in slider...resourcecounter: "<<resourcecounter<<endl;
 
     
     //check to see if the resource actually exists before the Unload

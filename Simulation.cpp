@@ -29,7 +29,11 @@ Simulation::Simulation():
     float simwidth=winx*0.7;
     float simheight=winy*0.95;
 
-    pxMeter=simy/scaleMeters;   //calc scale factor for converting meters to pixels
+    pxMeter=winy/scaleMeters;  
+    // calc scale factor for converting meters to pixels
+    // divide the height of the simarea by the number of meters it represents
+    // example 1600px/ 50 meters = 32. So, positioning at 25m would be
+    // 1600 - (25m * 32px/m)= 1600 - 800= positoin at 800 (which is half of the 50m)
    
 
 
@@ -39,10 +43,10 @@ Simulation::Simulation():
     
     
     chalk=LoadFontEx("./resources/Crayon.ttf",50,0,0);
-    std::cout << "Font texture ID: " << chalk.texture.id << std::endl;
+   // std::cout << "Font texture ID: " << chalk.texture.id << std::endl;
 
     
-    spring.initialize(simarea,{40,50},scaleMeters); //the 40,50 are meters
+    spring.initialize(simarea,{40,50},pxMeter); //the 40,50 are meters
     
 }
 //================================================
