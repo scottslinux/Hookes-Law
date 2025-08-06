@@ -15,6 +15,7 @@ private:
     float K=0;
     float springLen=2.0;  //meter long spring
     Vector2 springpos{};
+    Font marker{};
 
     int nodes=0;    //eventually the number of nodes
 

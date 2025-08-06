@@ -10,6 +10,9 @@ using namespace std;
 
 Spring::Spring()
 {
+        marker=LoadFont("./resources/Chalk.ttf");  //load gloabally
+        cout<<"ID: :"<<marker.texture.id<<endl;
+
 
 
 }
@@ -18,7 +21,7 @@ Spring::Spring()
 Spring::~Spring()
 {
 
-
+    UnloadFont(marker);
 
 }
 //======================================================
@@ -69,9 +72,13 @@ void Spring::draw()
 
     //draw the spring line
     DrawLineEx({Masspos.x,sandbox.y},{Masspos.x,sandbox.height-(Masspos.y*pxlmeters)},
-                        8,RED);
+                        4,RED);
     //draw the anvil
-    DrawCircle(Masspos.x,sandbox.height-(Masspos.y*pxlmeters),30,GREEN);
+    DrawCircle(Masspos.x,sandbox.height-(Masspos.y*pxlmeters),50,LIGHTGRAY);
+
+    char buffer[50];
+    snprintf(buffer,sizeof(buffer),"%.0f",mass);
+    DrawTextEx(marker,buffer,{Masspos.x-30,sandbox.height-(Masspos.y*pxlmeters)-20},50,0,BLACK);
     
 
 }
@@ -96,7 +103,7 @@ void Spring::initialize(Rectangle sndbox,Vector2 pos2, float scalepxm)
     sandbox=sndbox;
     K=200;   //Spring constant 500 Nm
     springLen=20;   //spring length meters
-    mass=50;    //15kg mass hanging
+    mass=500;    //15kg mass hanging
     Masspos.y=80; //⁡⁣⁢⁣​‌‍‌𝗲𝗻𝗱 𝗼𝗳 𝘁𝗵𝗲 𝘀𝗽𝗿𝗶𝗻𝗴 𝗼𝗻 𝗰ei𝗹𝗶𝗻𝗴 (𝗶𝗻 𝗺𝗲𝘁𝗲𝗿𝗲𝘀)​⁡
     Masspos.x=sandbox.width/2;
 
