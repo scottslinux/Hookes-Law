@@ -13,7 +13,7 @@ class Spring{
 private:
 
     float K=0;
-    float springLen=0;
+    float springLen=2.0;  //meter long spring
     Vector2 springpos{};
 
     int nodes=0;    //eventually the number of nodes
@@ -27,6 +27,9 @@ private:
     float scaleMeters=200;  // ​‌‌‍⁡⁣⁢⁣***** 𝗦𝗽𝗲𝗰𝗶𝗳𝘆𝗶𝗻𝗴 𝗵𝗲𝗶𝗴𝗵𝘁⁡​
     float pxlmeters=0;
     Rectangle sandbox{};
+    double animtimer=0;
+    double elapsedTime=0;
+    bool ticflag=false;
 
 
 

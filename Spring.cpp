@@ -4,6 +4,7 @@
 #include <raylib.h>
 
 #include "Spring.h"
+#include "Simulation.h"
 
 using namespace std;
 
@@ -27,22 +28,39 @@ Spring::~Spring()
 
 void Spring::updatephysics()
 {
-    // ⁡⁢⁣⁣​‌‌‍𝘆=𝟭/𝟮 𝗮𝘁𝟮 +𝘃𝟬𝘁 +𝘆𝟬​⁡;
+    timer();
 
-    float y0=Masspos.y; //hold the last Y position
-    double dt=GetFrameTime();   //elapsed frame time
+    if(ticflag)     //only update physics once every 0.016 sec  (60fps)
+    {
+    
+        // ⁡⁢⁣⁣​‌‌‍𝘆=𝟭/𝟮 𝗮𝘁𝟮 +𝘃𝟬𝘁 +𝘆𝟬​⁡;
 
-    //      ⁡⁣⁢⁣​‌‍‌𝗛𝗼𝗼𝗸𝗲'𝘀 𝗟𝗮𝘄 𝗧𝗶𝗺𝗲​⁡
+        float y0=Masspos.y; //hold the last Y position
+        double dt=GetFrameTime();   //elapsed frame time
 
-    float SF=K* abs(Masspos.y-springLen); //  ⁡⁣⁢⁣SF =Spring Force⁡
+        //      ⁡⁣⁢⁣​‌‍‌𝗛𝗼𝗼𝗸𝗲'𝘀 𝗟𝗮𝘄 𝗧𝗶𝗺𝗲​⁡ ​‌‍‌⁡⁢⁣⁢𝗳= -𝗞*𝗫⁡​
+        float neutral=80;    //correct the springlength from length to height in the air (meters)
+                            //this puts the end of a 50m spring hanging from a 200m room at 150m high
 
-    float newpos= (0.5*G*dt*dt)+vel+y0;
-    vel=(G+SF) *dt + vel;     //calc vel  vy=at+v0  adding SF to Gravity
+        float dx=neutral-Masspos.y;
+        float SF= -1* K * dx;  //  ⁡⁣⁢⁣SF =Spring Force⁡
 
-    Masspos.y=newpos;
+        //f*=-1.0;  //reverse the force so the accelleration is up
 
-    cout<<"Position: X: "<<Masspos.x<<"  Y: "<<Masspos.y<<endl;
+        float springAcc=SF/mass;
+        springAcc*= -1.0;  //reverse the accelleration for the vertical system
 
+
+        float newpos= (0.5*G*dt*dt)+(vel*dt)+y0;
+        vel=(springAcc+G) *dt + vel;     //calc vel  vy=at+v0  adding SF to Gravity
+
+        Masspos.y=newpos;
+
+        ticflag=false;
+
+        cout<<"Position: X: "<<Masspos.x<<"  Y: "<<Masspos.y<<" Time: "<<elapsedTime<<" SFdx: "<<dx<<endl;
+        cout<<"newpos "<<newpos<<" springlen "<<springLen<<endl;
+    }
 }
 //======================================================
 void Spring::draw()
@@ -54,13 +72,20 @@ void Spring::draw()
                         8,RED);
     //draw the anvil
     DrawCircle(Masspos.x,sandbox.height-(Masspos.y*pxlmeters),30,GREEN);
+    
 
 }
 //======================================================
 double Spring::timer()
 {
-
-
+    animtimer+=GetFrameTime();
+    elapsedTime+=animtimer;
+    if(animtimer> .016)
+    {
+        ticflag=true;
+        animtimer=0;
+    }
+    return 1.0;
 }
 //======================================================
 //⁡⁣⁣⁡⁣⁣⁢passing in the area of the playing field, pos of top of spring⁡ 
@@ -69,13 +94,13 @@ void Spring::initialize(Rectangle sndbox,Vector2 pos2, float scalepxm)
     springpos=pos2;
     pxlmeters=scalepxm;
     sandbox=sndbox;
-    K=.015;   //Spring constant
-    springLen=50;   //spring length 10 meters
-    mass=25;    //15kg mass hanging
-    Masspos.y=150; //⁡⁣⁢⁣​‌‍‌𝗲𝗻𝗱 𝗼𝗳 𝘁𝗵𝗲 𝘀𝗽𝗿𝗶𝗻𝗴 𝗼𝗻 𝗰𝗶𝗲𝗹𝗶𝗻𝗴 (𝗶𝗻 𝗺𝗲𝘁𝗲𝗿𝗲𝘀)​⁡
+    K=200;   //Spring constant 500 Nm
+    springLen=20;   //spring length meters
+    mass=50;    //15kg mass hanging
+    Masspos.y=80; //⁡⁣⁢⁣​‌‍‌𝗲𝗻𝗱 𝗼𝗳 𝘁𝗵𝗲 𝘀𝗽𝗿𝗶𝗻𝗴 𝗼𝗻 𝗰ei𝗹𝗶𝗻𝗴 (𝗶𝗻 𝗺𝗲𝘁𝗲𝗿𝗲𝘀)​⁡
     Masspos.x=sandbox.width/2;
 
-    G=G/pxlmeters;  // 9.8 / 32 (for 50 meters)= 0.31 m/sec2 ????
+    
 
     cout<<"Mass Position: X: "<<Masspos.x<<"  Y: "<<Masspos.y<<endl;
     cout<<"sandbox x: "<<sandbox.x<<" Y: "<<sandbox.y<<" Width: "<<sandbox.width<<

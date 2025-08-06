@@ -33,6 +33,8 @@ Simulation::Simulation():
 
     //          ​‌‍‌⁡⁣⁢⁣ℙ𝕀𝕏𝔼𝕃 : 𝕄𝔼𝕋𝔼ℝ𝕊 𝕊𝕔𝕒𝕝𝕚𝕟𝕘​⁡
     pxMeter=simheight/scaleMeters;  
+    cout<<pxMeter<<"----pxMeter\n";
+    
     // calc scale factor for converting meters to pixels
     // divide the height of the simarea by the number of meters it represents
     // example 1600px/ 50 meters = 32 [pxMeter]. So, positioning at 25m would be
