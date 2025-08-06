@@ -29,16 +29,19 @@ Simulation::Simulation():
     float simwidth=winx*0.7;
     float simheight=winy*0.95;
 
-    pxMeter=winy/scaleMeters;  
+    simarea={simx,simy,simwidth,simheight};
+
+    //          ​‌‍‌⁡⁣⁢⁣ℙ𝕀𝕏𝔼𝕃 : 𝕄𝔼𝕋𝔼ℝ𝕊 𝕊𝕔𝕒𝕝𝕚𝕟𝕘​⁡
+    pxMeter=simheight/scaleMeters;  
     // calc scale factor for converting meters to pixels
     // divide the height of the simarea by the number of meters it represents
-    // example 1600px/ 50 meters = 32. So, positioning at 25m would be
+    // example 1600px/ 50 meters = 32 [pxMeter]. So, positioning at 25m would be
     // 1600 - (25m * 32px/m)= 1600 - 800= positoin at 800 (which is half of the 50m)
    
 
 
 
-    simarea={simx,simy,simwidth,simheight};
+    
 
     
     
@@ -47,6 +50,8 @@ Simulation::Simulation():
 
     
     spring.initialize(simarea,{40,50},pxMeter); //the 40,50 are meters
+
+    
     
 }
 //================================================

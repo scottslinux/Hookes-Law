@@ -28,7 +28,7 @@ class Simulation{
         TextBox forceText;
 
         float pxMeter=0;  //scale factor to convert meters to pixels
-        float scaleMeters=50.0; //height of simarea in meters
+        float scaleMeters=200.0; //​‌‌‍⁡⁣⁢⁣𝗵𝗲𝗶𝗴𝗵𝘁 𝗼𝗳 𝘀𝗶𝗺𝗮𝗿𝗲𝗮 𝗶𝗻 𝗺𝗲𝘁𝗲𝗿𝘀⁡​
 
         Spring spring;
 

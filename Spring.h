@@ -21,10 +21,10 @@ private:
     //variables for anvil
     float mass=0;
     Vector2 Masspos{};
-    const float G=-9.8;
+    float G=-9.8;
     float vel=0;
     float dtime=0;
-    float scaleMeters=50;
+    float scaleMeters=200;  // ​‌‌‍⁡⁣⁢⁣***** 𝗦𝗽𝗲𝗰𝗶𝗳𝘆𝗶𝗻𝗴 𝗵𝗲𝗶𝗴𝗵𝘁⁡​
     float pxlmeters=0;
     Rectangle sandbox{};
 
