@@ -80,14 +80,19 @@ void Spring::draw()
     //draw the spring line
     DrawLineEx({Masspos.x,sandbox.y},{Masspos.x,sandbox.height-(Masspos.y*pxlmeters)},
                         4,BROWN);
-    //draw the anvil
-    //DrawCircle(Masspos.x,sandbox.height-(Masspos.y*pxlmeters),50,LIGHTGRAY);
+    
 
     char buffer[50];
     snprintf(buffer,sizeof(buffer),"%.0f",mass);
     DrawTextEx(marker,buffer,{Masspos.x-30,sandbox.height-(Masspos.y*pxlmeters)-20},50,0,BLACK);
 
     DrawTexture(ball,Masspos.x-ball.width/2,sandbox.height-(Masspos.y*pxlmeters),WHITE);
+
+    char buffer2[100];
+    snprintf(buffer2,sizeof(buffer2),"velocity: %.0f \nSpring K: %.0f\nMass: %.0f",
+                vel,K,mass);
+
+    DrawTextEx(marker,buffer2,{(float)sandbox.width*0.1,(float)sandbox.height*0.5},70,0,WHITE);
     
 
 }
