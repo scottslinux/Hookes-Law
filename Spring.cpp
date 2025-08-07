@@ -33,9 +33,12 @@ Spring::~Spring()
 //example top of the cieling might be 50 meteres and the floor is 0
 //scaleMeters is defined in Spring.h (also used in Simulatiuon)
 
-void Spring::updatephysics()
+void Spring::updatephysics(float newK, float newMass)
 {
     timer();
+
+    K=newK;         //accepting new values from the sliders in Simulation
+    mass=newMass;
 
     if(ticflag)     //only update physics once every 0.016 sec  (60fps)
     {

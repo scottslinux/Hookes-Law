@@ -26,7 +26,7 @@ private:
     float G=-9.8;
     float vel=0;
     float dtime=0;
-    float scaleMeters=200;  // ​‌‌‍⁡⁣⁢⁣***** 𝗦𝗽𝗲𝗰𝗶𝗳𝘆𝗶𝗻𝗴 𝗵𝗲𝗶𝗴𝗵𝘁⁡​
+    float scaleMeters=200;  // ​‌‌‍⁡⁣⁢⁣***** 𝗦𝗽𝗲𝗰𝗶𝗳𝘆𝗶𝗻𝗴 𝗵𝗲𝗶𝗴𝗵𝘁⁡​ will update in updatephysics
     float pxlmeters=0;
     Rectangle sandbox{};
     double animtimer=0;
@@ -44,7 +44,7 @@ public:
 
     void initialize(Rectangle simarea, Vector2 sprngpos,float scalepxm);
     void draw();
-    void updatephysics();
+    void updatephysics(float newK, float newMass);
     double timer();
 
 

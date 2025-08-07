@@ -19,7 +19,7 @@ int main()
     const int winheight=1800;
 
     InitWindow(GetMonitorWidth(0),GetMonitorHeight(0),"test");
-    float bestwidth=GetMonitorWidth(0)*0.8;
+    float bestwidth=GetMonitorWidth(0)*0.95;
     float bestheight=GetMonitorHeight(0)*0.8;
     CloseWindow();
     

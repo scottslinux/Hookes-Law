@@ -16,8 +16,8 @@
 
 Simulation::Simulation():
     resetButton({(float)0.73*GetScreenWidth(),(float)0.28*GetScreenHeight()},0.15,"BEGIN SIM"),
-    massSlider({(float)0.73*GetScreenWidth(),(float)0.35*GetScreenHeight()},0.4,0,0,100,"GRAVITY"),
-    gravitySlider({(float)0.73*GetScreenWidth(),(float)0.45*GetScreenHeight()},0.4,0,0,100,"MASS"),
+    massSlider({(float)0.73*GetScreenWidth(),(float)0.35*GetScreenHeight()},0.4,0,0,300,"Mass"),
+    KSlider({(float)0.73*GetScreenWidth(),(float)0.45*GetScreenHeight()},0.4,0,0,2000,"Spring K"),
     forceText(60,10,{(float)0.73*GetScreenWidth(),(float)0.60*GetScreenHeight()},"Acceleration: ")
 
 {
@@ -34,6 +34,9 @@ Simulation::Simulation():
     //          ​‌‍‌⁡⁣⁢⁣ℙ𝕀𝕏𝔼𝕃 : 𝕄𝔼𝕋𝔼ℝ𝕊 𝕊𝕔𝕒𝕝𝕚𝕟𝕘​⁡
     pxMeter=simheight/scaleMeters;  
     cout<<pxMeter<<"----pxMeter\n";
+
+    massSlider.value=50;   //starting values
+    KSlider.value=200;
     
     // calc scale factor for converting meters to pixels
     // divide the height of the simarea by the number of meters it represents
@@ -67,12 +70,13 @@ void Simulation::update()
 {
     resetButton.update();
     float mass=massSlider.update();
-    float acc=gravitySlider.update();
+    float k=KSlider.update();
+    
     forceText.update();
 
-    forceText.print(mass*acc);
+    forceText.print(k);
 
-    spring.updatephysics();
+    spring.updatephysics(k,mass);   //pass the new values from the sliders
 
     
 
@@ -89,12 +93,12 @@ void Simulation::draw()
     DrawRectangleLinesEx(simarea,5,WHITE);
     //side panel rectangle
     DrawRectangle(winx*0.73,simarea.y,winx*0.3,simarea.height,Color{24,52,20,255});
-    DrawTextEx(chalk,"Sping Physics Simulation",{winx*.735,winy*.05},90,0,Color{230,230,115,255});
+    DrawTextEx(chalk,"Spring Physics Simulation",{winx*.735,winy*.05},80,0,Color{230,230,115,255});
     DrawTextEx(chalk,"Danger Simulation Area\n   Remain Clear...",{winx*.23,winy*.83},80,0,WHITE);
 
     resetButton.draw();
     massSlider.draw();
-    gravitySlider.draw();
+    KSlider.draw();
     forceText.draw();
 
     spring.draw();

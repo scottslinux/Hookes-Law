@@ -24,7 +24,7 @@ class Simulation{
         
         Button resetButton;
         Slider massSlider;
-        Slider gravitySlider;
+        Slider KSlider;
         TextBox forceText;
 
         float pxMeter=0;  //scale factor to convert meters to pixels
