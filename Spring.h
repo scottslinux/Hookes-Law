@@ -16,6 +16,7 @@ private:
     float springLen=2.0;  //meter long spring
     Vector2 springpos{};
     Font marker{};
+    Texture2D ball{};
 
     int nodes=0;    //eventually the number of nodes
 

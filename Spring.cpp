@@ -13,6 +13,9 @@ Spring::Spring()
         marker=LoadFont("./resources/Chalk.ttf");  //load gloabally
         cout<<"ID: :"<<marker.texture.id<<endl;
 
+        ball=LoadTexture("./resources/ball.png");
+
+
 
 
 }
@@ -22,6 +25,7 @@ Spring::~Spring()
 {
 
     UnloadFont(marker);
+    UnloadTexture(ball);
 
 }
 //======================================================
@@ -72,13 +76,15 @@ void Spring::draw()
 
     //draw the spring line
     DrawLineEx({Masspos.x,sandbox.y},{Masspos.x,sandbox.height-(Masspos.y*pxlmeters)},
-                        4,RED);
+                        4,BROWN);
     //draw the anvil
-    DrawCircle(Masspos.x,sandbox.height-(Masspos.y*pxlmeters),50,LIGHTGRAY);
+    //DrawCircle(Masspos.x,sandbox.height-(Masspos.y*pxlmeters),50,LIGHTGRAY);
 
     char buffer[50];
     snprintf(buffer,sizeof(buffer),"%.0f",mass);
     DrawTextEx(marker,buffer,{Masspos.x-30,sandbox.height-(Masspos.y*pxlmeters)-20},50,0,BLACK);
+
+    DrawTexture(ball,Masspos.x-ball.width/2,sandbox.height-(Masspos.y*pxlmeters),WHITE);
     
 
 }
