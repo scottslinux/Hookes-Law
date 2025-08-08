@@ -89,12 +89,12 @@ void Spring::draw()
     DrawTexture(ball,Masspos.x-ball.width/2,sandbox.height-(Masspos.y*pxlmeters),WHITE);
 
     char buffer2[100];
-    snprintf(buffer2,sizeof(buffer2),"velocity: %.0f \nSpring K: %.0f\nMass: %.0f",
+    snprintf(buffer2,sizeof(buffer2),"velocity: %.0f m/s\nSpring K: %.0f N/m\nMass: %.0f kg",
                 vel,K,mass);
 
     DrawTextEx(marker,buffer2,{(float)sandbox.width*0.1,(float)sandbox.height*0.5},70,0,WHITE);
     
-
+    nodedraw();
 }
 //======================================================
 double Spring::timer()
@@ -126,6 +126,33 @@ void Spring::initialize(Rectangle sndbox,Vector2 pos2, float scalepxm)
     cout<<"Mass Position: X: "<<Masspos.x<<"  Y: "<<Masspos.y<<endl;
     cout<<"sandbox x: "<<sandbox.x<<" Y: "<<sandbox.y<<" Width: "<<sandbox.width<<
         " Height: "<<sandbox.height<<" PixelMeters: "<<pxlmeters<<endl;
+}
+
+
+//======================================================
+void Spring::nodedraw()
+{
+    //(sandbox.x,sandbox.y) <--represents the attachment point at upper screen
+    //(masspos.x,masspos.y)  <--represents the top point of the suspended mass
+    //nodes will represent the number of lines/coils in the spring
+    //interval is the length divided by the number of nodes
+
+    nodes=12;
+
+    float interval=(sandbox.height-(Masspos.y*pxlmeters))/nodes;
+    //float springwidth=Masspos.x-50; //may change the thickness of the spring
+    for (int nodecount=1;nodecount<nodes-1;nodecount++)
+    {
+        //DrawCircle(sandbox.width/2,nodecount*interval,20,GREEN);
+
+        DrawLineEx({sandbox.width/2-20,interval*nodecount+sandbox.y},
+        {sandbox.width/2+20,interval*nodecount+sandbox.y+interval/2},5,LIGHTGRAY);
+
+    }
+
+
+
+
 
 
 }

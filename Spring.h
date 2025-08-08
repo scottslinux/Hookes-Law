@@ -46,6 +46,6 @@ public:
     void draw();
     void updatephysics(float newK, float newMass);
     double timer();
-
+    void nodedraw();
 
 };

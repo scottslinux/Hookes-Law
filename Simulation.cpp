@@ -94,12 +94,17 @@ void Simulation::draw()
     //side panel rectangle
     DrawRectangle(winx*0.73,simarea.y,winx*0.3,simarea.height,Color{24,52,20,255});
     DrawTextEx(chalk,"Spring Physics Simulation",{winx*.735,winy*.05},80,0,Color{230,230,115,255});
-    DrawTextEx(chalk,"Danger Simulation Area\n   Remain Clear...",{winx*.23,winy*.83},80,0,WHITE);
+    DrawTextEx(chalk,"Simulation Area...",{winx*.23,winy*.83},80,0,WHITE);
+
+    char buffer3[30];
+    snprintf(buffer3,sizeof(buffer3),"%.0f\nmeters\nhigh",scaleMeters);
+    DrawTextEx(chalk,buffer3,{simarea.x+simarea.width*0.9,simarea.y+simarea.height*0.5},60,0,WHITE);
+
 
     resetButton.draw();
     massSlider.draw();
     KSlider.draw();
-    forceText.draw();
+    //forceText.draw();
 
     spring.draw();
 
