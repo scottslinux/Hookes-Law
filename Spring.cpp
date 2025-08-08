@@ -85,6 +85,8 @@ void Spring::draw()
     char buffer[50];
     snprintf(buffer,sizeof(buffer),"%.0f",mass);
     DrawTextEx(marker,buffer,{Masspos.x-30,sandbox.height-(Masspos.y*pxlmeters)-20},50,0,BLACK);
+    
+    nodedraw();
 
     DrawTexture(ball,Masspos.x-ball.width/2,sandbox.height-(Masspos.y*pxlmeters),WHITE);
 
@@ -94,7 +96,6 @@ void Spring::draw()
 
     DrawTextEx(marker,buffer2,{(float)sandbox.width*0.1,(float)sandbox.height*0.5},70,0,WHITE);
     
-    nodedraw();
 }
 //======================================================
 double Spring::timer()
@@ -137,16 +138,18 @@ void Spring::nodedraw()
     //nodes will represent the number of lines/coils in the spring
     //interval is the length divided by the number of nodes
 
-    nodes=12;
+    nodes=20;
 
     float interval=(sandbox.height-(Masspos.y*pxlmeters))/nodes;
     //float springwidth=Masspos.x-50; //may change the thickness of the spring
-    for (int nodecount=1;nodecount<nodes-1;nodecount++)
+    for (int nodecount=1;nodecount<nodes;nodecount++)
     {
         //DrawCircle(sandbox.width/2,nodecount*interval,20,GREEN);
 
         DrawLineEx({sandbox.width/2-20,interval*nodecount+sandbox.y},
         {sandbox.width/2+20,interval*nodecount+sandbox.y+interval/2},5,LIGHTGRAY);
+        DrawLineEx({sandbox.width/2+20,interval*nodecount+sandbox.y+interval/2},
+        {sandbox.width/2-20,interval*(nodecount+1)+sandbox.y},5,LIGHTGRAY);
 
     }
 
