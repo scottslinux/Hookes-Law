@@ -16,6 +16,7 @@ private:
     float springLen=2.0;  //meter long spring
     Vector2 springpos{};
     Font marker{};
+    Font inter{};
     Texture2D ball{};
 
     int nodes=0;    //eventually the number of nodes
@@ -28,6 +29,7 @@ private:
     float dtime=0;
     float scaleMeters=200;  // ​‌‌‍⁡⁣⁢⁣***** 𝗦𝗽𝗲𝗰𝗶𝗳𝘆𝗶𝗻𝗴 𝗵𝗲𝗶𝗴𝗵𝘁⁡​ will update in updatephysics
     float pxlmeters=0;
+    float b=0; //dampening coefficient
     Rectangle sandbox{};
     double animtimer=0;
     double elapsedTime=0;
@@ -44,7 +46,7 @@ public:
 
     void initialize(Rectangle simarea, Vector2 sprngpos,float scalepxm);
     void draw();
-    void updatephysics(float newK, float newMass);
+    void updatephysics(float newK, float newMass, float b); //pass K, mass, damper coeff.
     double timer();
     void nodedraw();
 

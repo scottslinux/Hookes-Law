@@ -12,13 +12,15 @@
 
 #include "Simulation.h"
 
-
+//  ⁡⁣⁢⁣​‌‌‌ℍ𝕠𝕠𝕜𝕖'𝕤 𝕃𝕒𝕨 𝕊𝕚𝕞𝕦𝕝𝕒𝕥𝕚𝕠𝕟 𝕨𝕚𝕥𝕙 ℂ𝕦𝕤𝕥𝕠𝕞 ℂ𝕠𝕟𝕥𝕣𝕠𝕝𝕤​⁡
 
 Simulation::Simulation():
     resetButton({(float)0.73*GetScreenWidth(),(float)0.28*GetScreenHeight()},0.15,"BEGIN SIM"),
     massSlider({(float)0.73*GetScreenWidth(),(float)0.35*GetScreenHeight()},0.4,0,0,300,"Mass"),
     KSlider({(float)0.73*GetScreenWidth(),(float)0.45*GetScreenHeight()},0.4,0,0,2000,"Spring K"),
+    Damper({(float)0.73*GetScreenWidth(),(float)0.55*GetScreenHeight()},0.4,0,0,20,"Damper B"),
     forceText(60,10,{(float)0.73*GetScreenWidth(),(float)0.60*GetScreenHeight()},"Acceleration: ")
+
 
 {
     winx=GetScreenWidth();
@@ -71,12 +73,13 @@ void Simulation::update()
     resetButton.update();
     float mass=massSlider.update();
     float k=KSlider.update();
+    float b=Damper.update();
     
     forceText.update();
 
     forceText.print(k);
 
-    spring.updatephysics(k,mass);   //pass the new values from the sliders
+    spring.updatephysics(k,mass,b);   //pass the new values from the sliders
 
     
 
@@ -93,8 +96,6 @@ void Simulation::draw()
     DrawRectangleLinesEx(simarea,5,WHITE);
     //side panel rectangle
     DrawRectangle(winx*0.73,simarea.y,winx*0.3,simarea.height,Color{24,52,20,255});
-    DrawTextEx(chalk,"Spring Physics Simulation",{winx*.735,winy*.05},80,0,Color{230,230,115,255});
-    DrawTextEx(chalk,"Simulation Area...",{winx*.23,winy*.83},80,0,WHITE);
 
     char buffer3[30];
     snprintf(buffer3,sizeof(buffer3),"%.0f\nmeters\nhigh",scaleMeters);
@@ -104,6 +105,7 @@ void Simulation::draw()
     resetButton.draw();
     massSlider.draw();
     KSlider.draw();
+    Damper.draw();
     //forceText.draw();
 
     spring.draw();

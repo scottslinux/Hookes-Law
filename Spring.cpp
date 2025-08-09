@@ -12,6 +12,7 @@ Spring::Spring()
 {
         marker=LoadFont("./resources/Chalk.ttf");  //load gloabally
         cout<<"ID: :"<<marker.texture.id<<endl;
+        inter=LoadFont("./resources/Inter.ttf");
 
         ball=LoadTexture("./resources/ball.png");
 
@@ -25,6 +26,7 @@ Spring::~Spring()
 {
 
     UnloadFont(marker);
+    UnloadFont(inter);
     UnloadTexture(ball);
 
 }
@@ -33,12 +35,13 @@ Spring::~Spring()
 //example top of the cieling might be 50 meteres and the floor is 0
 //scaleMeters is defined in Spring.h (also used in Simulatiuon)
 
-void Spring::updatephysics(float newK, float newMass)
+void Spring::updatephysics(float newK, float newMass, float B)
 {
     timer();
 
     K=newK;         //accepting new values from the sliders in Simulation
     mass=newMass;
+    b=B;    //pass inthe dampening coeff.
 
     if(ticflag)     //only update physics once every 0.016 sec  (60fps)
     {
@@ -60,9 +63,9 @@ void Spring::updatephysics(float newK, float newMass)
         float springAcc=SF/mass;
         springAcc*= -1.0;  //reverse the accelleration for the vertical system
 
-
-        float newpos= (0.5*G*dt*dt)+(vel*dt)+y0;
-        vel=(springAcc+G) *dt + vel;     //calc vel  vy=at+v0  adding SF to Gravity
+        float dampforce=(-1.0*B)*(vel/mass);
+        float newpos= (0.5*(springAcc+G+dampforce)*dt*dt)+(vel*dt)+y0;
+        vel=(springAcc+G+dampforce) *dt + vel;     //calc vel  vy=at+v0  adding SF to Gravity
 
         Masspos.y=newpos;
 
@@ -91,11 +94,14 @@ void Spring::draw()
     DrawTexture(ball,Masspos.x-ball.width/2,sandbox.height-(Masspos.y*pxlmeters),WHITE);
 
     char buffer2[100];
-    snprintf(buffer2,sizeof(buffer2),"velocity: %.0f m/s\nSpring K: %.0f N/m\nMass: %.0f kg",
-                vel,K,mass);
+    snprintf(buffer2,sizeof(buffer2),
+    "velocity: %.0f m/s\nSpring K: %.0f N/m\nMass: %.0f kg\nDampening Coeff b: %.0f",
+                vel,K,mass,b);
 
     DrawTextEx(marker,buffer2,{(float)sandbox.width*0.1,(float)sandbox.height*0.5},70,0,WHITE);
-    
+    DrawTextEx(inter,"Spring Physics Simulation\n               F= -k X",{sandbox.x+sandbox.width*.25,
+        sandbox.y+sandbox.height*.8},100,0,Color{78,255,243,255});
+   
 }
 //======================================================
 double Spring::timer()
@@ -133,6 +139,8 @@ void Spring::initialize(Rectangle sndbox,Vector2 pos2, float scalepxm)
 //======================================================
 void Spring::nodedraw()
 {
+    //          ​‌‌‍⁡⁣⁢⁣‍𝔻ℝ𝔸𝕎 𝕋ℍ𝔼 𝕊ℙℝ𝕀ℕ𝔾⁡​
+    
     //(sandbox.x,sandbox.y) <--represents the attachment point at upper screen
     //(masspos.x,masspos.y)  <--represents the top point of the suspended mass
     //nodes will represent the number of lines/coils in the spring
@@ -144,12 +152,18 @@ void Spring::nodedraw()
     //float springwidth=Masspos.x-50; //may change the thickness of the spring
     for (int nodecount=1;nodecount<nodes;nodecount++)
     {
-        //DrawCircle(sandbox.width/2,nodecount*interval,20,GREEN);
-
+        // Draw the main spring
         DrawLineEx({sandbox.width/2-20,interval*nodecount+sandbox.y},
-        {sandbox.width/2+20,interval*nodecount+sandbox.y+interval/2},5,LIGHTGRAY);
+        {sandbox.width/2+20,interval*nodecount+sandbox.y+interval/2},5,GRAY);
         DrawLineEx({sandbox.width/2+20,interval*nodecount+sandbox.y+interval/2},
-        {sandbox.width/2-20,interval*(nodecount+1)+sandbox.y},5,LIGHTGRAY);
+        {sandbox.width/2-20,interval*(nodecount)+sandbox.y+interval},5,GRAY);
+
+
+
+
+        // Draw the specular reflection
+        DrawLineEx({sandbox.width/2,sandbox.y+(interval*nodecount+interval/4)},
+        {sandbox.width/2+10, interval*nodecount+sandbox.y+interval/2.5},5,WHITE);
 
     }
 
